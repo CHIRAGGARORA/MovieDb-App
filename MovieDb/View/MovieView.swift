@@ -9,7 +9,8 @@ import SwiftUI
 
 struct MovieView: View {
     
-    let movies: [Movie]
+    @State var movies: [Movie] = []
+    // @State is a property wrapper
     
     
     var body: some View {
@@ -34,11 +35,20 @@ struct MovieView: View {
             }
             .padding()
         }
+        .task { // in bigger apps dependency injections
+            do {
+                let service = Moviesservice()
+                movies = try await service.getMoviesFromAPI()
+            }catch {
+                print(error)
+            }
+            
+        }
     }
 }
 
 struct MovieView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieView(movies: .mock)
+        MovieView()
     }
 }

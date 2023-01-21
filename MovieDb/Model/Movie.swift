@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct Movie: Identifiable{
+struct MovieResponse: Decodable {
+    let results: [Movie]
+}
+
+struct Movie: Identifiable, Decodable {
     let id: Int
     let title: String
     let overview: String
