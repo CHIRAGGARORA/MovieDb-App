@@ -11,7 +11,11 @@ import SwiftUI
 struct MovieDbApp: App {
     var body: some Scene {
         WindowGroup {
-            MovieView(movies: .mock)
+            NavigationView{
+                MoviesView()
+                
+            }
+            
         }
     }
 }
